@@ -1,0 +1,76 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+        {% compress css %}
+
+            <link rel="stylesheet" href="{% static 'scss/page.scss' %}" type="text/x-scss">
+
+        {% endcompress %}
+
+    </head>
+
+
+    <body>
+        
+        <div class="avatar"><div class="wrapper"><img src="{{ profile.avatar.url }}"></div></div>
+
+        <div class="posts">
+
+            {% for post in posts %}
+
+                <div class="post">
+
+                    <img src="{{ post.photo.url }}">
+
+                    <div class="caption"><span>{{ post.caption }}</span></div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </body>
+
+    <style>
+
+        @font-face {
+
+            font-family: Comforter;
+            src: url("{% static 'fonts/Comforter-Regular.ttf' %}");
+        
+        }
+
+        body {
+
+            font-family: Comforter;
+
+        }
+
+    </style>
+
+    <script>
+
+        $('.post').mouseenter(function() {
+
+            $(this).children('.caption').animate({'opacity': 1}, 500);
+
+        });
+
+        $('.post').mouseleave(function() {
+
+            $(this).children('.caption').animate({'opacity': 0}, 500);
+
+        });
+
+    </script>
+
+</html>
